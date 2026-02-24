@@ -1,0 +1,214 @@
+---
+title: "Class 11: AlphaFold"
+author: "Alfred Phyo (PID: A18129346)"
+format: pdf
+toc: TRUE
+---
+
+## Background
+
+We saw last day that the main repository for biomolecular structure (the PDB database) only has ~250,000 entries.
+
+UniProtKB (the main protein sequence database) has over 200 million entries!
+
+
+## AlphaFold
+
+In this hands-on session we will utilize AlphaFold to predict protein structure from sequence (Jumper et al. 2021).
+
+Without the aid of such approaches, it can take years of expensive laboratory work to determine the structure of just one protein. With AlphaFold we can now accurately compute a typical protein structure in as little as ten minutes.
+
+
+## The EBI AlphaFold database
+
+The EBI AlphaFold database contains lots of computed structure models. It is increasingly likely that the structure you are interested in is already in this database at <https://alphafold.ebi.ac.uk/>
+
+There are 3 major outputs from AlphaFold
+
+1. A model of structure in **PDB** format. 
+2. a **pLDDT score**: that tells us how confident the model is for a given residue in your protein (High values are good, above 70)
+3. a **PAE score** that tells us about protein packing quality.
+
+If you can't find a matching entry for the sequence you are interested in AFDB you can run AlphaFold yourself...
+
+
+## Running AlphaFold
+
+We will use ColabFold to run AlphaFold on our sequence <https://github.com/sokrypton/ColabFold>
+
+Figure from AlphaFold here!
+![](HIVPR_23119_HIVPR_23119_UNRELAXED_RANK_002_ALPHAFOLD2_MULTIMER_V3_MODEL_1_SEED_000.PDB-HIVPR_23119_HIVPR_23119_UNRELAXED_RANK_003_ALPHAFOLD2_MULTIMER_V3_MODEL_5_SEED_000.PDB-HIVPR_23119_HIVPR_23119_UNRELAXED_RANK_005_ALPHAFOLD2_MULTIMER_V3_.png)
+
+## Interpreting Results
+
+Custom analysis of resulting models
+
+We can read all the AlphaFold results into R and do more quantitative analysis than just viewing the structures in Mol-star:
+
+Read all the PDB models:
+```{r}
+library(bio3d)
+p <- read.pdb("hivpr_23119/hivpr_23119_unrelaxed_rank_001_alphafold2_multimer_v3_model_4_seed_000.pdb")
+
+```
+
+```{r}
+pdb_files <- list.files("hivpr_23119/", pattern = ".pdb", full.names = T)
+
+pdbs <- pdbaln(pdb_files, fit=TRUE, exefile="msa")
+```
+
+```{r}
+#library(bio3dview)
+#view.pdbs(pdbs)
+```
+
+How similar or different are my models?
+
+```{r}
+rd <- rmsd(pdbs)
+
+library(pheatmap)
+colnames(rd) <- paste0("m",1:5)
+rownames(rd) <- paste0("m",1:5)
+pheatmap(rd)
+```
+
+## Custom analysis of resulting models
+
+Read a reference PDB structure
+
+```{r}
+pdb <- read.pdb("1hsg")
+```
+
+```{r}
+plotb3(pdbs$b[1,], typ="l", lwd=2, sse=pdb)
+points(pdbs$b[2,], typ="l", col="red")
+points(pdbs$b[3,], typ="l", col="blue")
+points(pdbs$b[4,], typ="l", col="darkgreen")
+points(pdbs$b[5,], typ="l", col="orange")
+abline(v=100, col="gray")
+```
+
+```{r}
+core <- core.find(pdbs)
+```
+
+```{r}
+core.inds <- print(core, vol=0.5)
+```
+
+```{r}
+xyz <- pdbfit(pdbs, core.inds, outpath="corefit_structures")
+```
+
+Examining the RMSF between positions of the structure of 1hsg.
+
+```{r}
+rf <- rmsf(xyz)
+
+plotb3(rf, sse=pdb)
+abline(v=100, col="gray", ylab="RMSF")
+```
+
+# Predicted Alignment Error for domains
+
+```{r}
+library(jsonlite)
+
+# Listing of all PAE JSON files
+pae_files <- list.files(path="hivpr_23119/",
+                        pattern=".*model.*\\.json",
+                        full.names = TRUE)
+```
+
+```{r}
+pae1 <- read_json(pae_files[1],simplifyVector = TRUE)
+pae5 <- read_json(pae_files[5],simplifyVector = TRUE)
+
+attributes(pae1)
+```
+
+```{r}
+# Per-residue pLDDT scores 
+#  same as B-factor of PDB..
+head(pae1$plddt) 
+```
+
+Maximum PAE values
+
+```{r}
+pae1$max_pae
+```
+
+```{r}
+pae5$max_pae
+```
+
+```{r}
+plot.dmat(pae1$pae, 
+          xlab="Residue Position (i)",
+          ylab="Residue Position (j)")
+```
+
+```{r}
+plot.dmat(pae5$pae, 
+          xlab="Residue Position (i)",
+          ylab="Residue Position (j)",
+          grid.col = "black",
+          zlim=c(0,30))
+```
+
+```{r}
+plot.dmat(pae1$pae, 
+          xlab="Residue Position (i)",
+          ylab="Residue Position (j)",
+          grid.col = "black",
+          zlim=c(0,30))
+```
+
+# Residue conservation from alignment file
+
+```{r}
+aln_file <- list.files(path="hivpr_23119/",
+                       pattern=".a3m$",
+                        full.names = TRUE)
+aln_file
+```
+
+```{r}
+aln <- read.fasta(aln_file[1], to.upper = TRUE)
+```
+
+Number of sequences in this alignment
+
+```{r}
+dim(aln$ali)
+```
+ 
+Residue conservation
+
+```{r}
+sim <- conserv(aln)
+```
+
+```{r}
+plotb3(sim[1:99], sse=trim.pdb(pdb, chain="A"),
+       ylab="Conservation Score")
+```
+
+```{r}
+con <- consensus(aln, cutoff = 0.9)
+con$seq
+```
+
+```{r}
+m1.pdb <- read.pdb(pdb_files[1])
+occ <- vec2resno(c(sim[1:99], sim[1:99]), m1.pdb$atom$resno)
+write.pdb(m1.pdb, o=occ, file="m1_conserv.pdb")
+```
+
+
+
+
