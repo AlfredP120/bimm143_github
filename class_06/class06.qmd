@@ -1,7 +1,7 @@
 ---
 title: "Class 6: R functions"
 author: "Alfred Phyo (PID: A18129346)"
-format: pdf
+format: gfm
 toc: true
 ---
 
