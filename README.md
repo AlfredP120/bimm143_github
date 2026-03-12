@@ -29,9 +29,9 @@ My classwork for [BIMM143](https://bioboot.github.io/bimm143_W26/) at UC San Die
 
 - Class 15 [Hands-on with Git and GitHub] (Making the GitHub website)
 
-- Class 16 [Essential UNIX for bioinformatics](class16/Hw8_unix_questions.pdf)
+- Class 16 [Essential UNIX for bioinformatics](class16/HW8_unix_questions.pdf)
 
-- Class 17 [Analyzing sequencing data in the cloud](class17/lab17.md)
+- Class 17 [Analyzing sequencing data in the cloud](class17/class17.md)
 
 - Class 18 [Investigating pertussis resurgence mini-project](class18/class18.md)
 
