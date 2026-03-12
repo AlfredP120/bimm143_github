@@ -9,4 +9,4 @@ My classwork for [BIMM143](https://bioboot.github.io/bimm143_W26/) at UC San Die
 
 - Class 05 [Data viz with ggplot](class05/class05.qmd)
 
-- Class 06 something else
+- Class 06 [R functions](class06/class06.qmd)
