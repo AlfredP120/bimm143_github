@@ -1,0 +1,28 @@
+---
+title: "Class 19: Cancer Mutation Mini Project"
+author: "Alfred Phyo (PID: A18129346)"
+format: html
+---
+
+I downloaded my sequence from the class website and moved it to my working directory:
+
+
+```{r}
+library(bio3d)
+
+a <- read.fasta("A18129346_mutant_seq.fa")
+a
+```
+
+We could score residue conservation then find the non 1.0 scoring positions. These will be the mutation positions:
+
+```{r}
+which(conserv(a) < 1)
+```
+
+```{r}
+paste(a$ali[1, mutation.sitess],
+      mutation.sites,
+      a$ali[2,]
+```
+

@@ -1,0 +1,25 @@
+---
+title: "Class 12:  Genome informatics"
+author: "Alfred Phyo (PID: A18129346)"
+format: html
+---
+
+# Section 1. Proportion of G/G in a population
+
+Downloaded a CSV file from Ensemble <https://useast.ensembl.org/Homo_sapiens/Variation/Sample?db=core;r=17:39894595-39895595;v=rs8067378;vdb=variation;vf=959672880#373531_tablePanel>
+
+Here we read this CSV file
+
+```{r}
+mxl <- read.csv("373531-SampleGenotypes-Homo_sapiens_Variation_Sample_rs8067378.csv")
+head(mxl)
+```
+
+```{r}
+table(mxl$Genotype..forward.strand.)
+```
+
+```{r}
+table(mxl$Genotype..forward.strand.) / nrow(mxl) * 100
+```
+
