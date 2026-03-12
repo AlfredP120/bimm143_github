@@ -20,7 +20,7 @@ We need two different inputs:
 
 ```{r}
 counts <- read.csv("airway_scaledcounts.csv", row.names=1)
-metadata <- read.csv("airway_metadata.csv")
+metadata <- read.csv("airway_metadata copy.csv")
 ```
 
 Wee peak at counts and metadata

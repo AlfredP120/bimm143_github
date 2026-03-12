@@ -17,6 +17,6 @@ samples <- sub("_quant", "", folders)
 files <- file.path( folders, "abundance.h5" )
 names(files) <- samples
 
-txi.kallisto <- tximport(files, type = "kallisto", txOut = TRUE)
+# txi.kallisto <- tximport(files, type = "kallisto", txOut = TRUE)
 ```
 

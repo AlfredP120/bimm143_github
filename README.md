@@ -29,7 +29,7 @@ My classwork for [BIMM143](https://bioboot.github.io/bimm143_W26/) at UC San Die
 
 - Class 15 [Hands-on with Git and GitHub](class15/class15.md)
 
-- Class 17 [Analyzing sequencing data in the cloud](class17/class17.md)
+- Class 17 [Analyzing sequencing data in the cloud](class17.md)
 
 - Class 18 [Investigating pertussis resurgence mini-project](class18/class18.md)
 
