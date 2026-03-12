@@ -1,0 +1,22 @@
+---
+title: "Lab17: Analyzing sequencing data in the cloud"
+author: "Alfred Phyo (PID: A18129346)"
+format: html
+---
+
+## Downstream analysis
+
+After getting the quantification data using a remote computer, the data were successfully transferred into this computer in the class17 folder. The following code performs downstream analysis on these data.
+
+```{r}
+library(tximport)
+
+# setup the folder and filenames to read
+folders <- dir(pattern="SRR21568*")
+samples <- sub("_quant", "", folders)
+files <- file.path( folders, "abundance.h5" )
+names(files) <- samples
+
+txi.kallisto <- tximport(files, type = "kallisto", txOut = TRUE)
+```
+
