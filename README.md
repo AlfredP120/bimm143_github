@@ -5,7 +5,7 @@ My classwork for [BIMM143](https://bioboot.github.io/bimm143_W26/) at UC San Die
 
 *Introductory material*
 
-- Class 04 [Intro to R](class04/class04.md)
+- Class 04 [Intro to R](class04/class4.md)
 
 - Class 05 [Data viz with ggplot](class05/class5.md)
 
@@ -15,13 +15,13 @@ My classwork for [BIMM143](https://bioboot.github.io/bimm143_W26/) at UC San Die
 
 - Class 08 [Unsupervised learning mini-project](class08/class08.md)
 
-- Class 09 [Candy mini-project](class08/class09.md)
+- Class 09 [Candy mini-project](class09/class09.md)
 
-- Class 10 [Structural Bioinformatics (pt1)](class08/class10.md)
+- Class 10 [Structural Bioinformatics (pt1)](class10/class10.md)
 
 - Class 11 [Structural Bioinformatics (pt2 AlphaFold)](class11/class_11.md)
 
-- Class 12 [Genome informatics and high throughput sequencing](class12/class12.md)
+- Class 12 [Genome informatics and high throughput sequencing](class12/class12hw.md)
 
 - Class 13 [Transcriptomics, RNA-Seq analysis, and the interpretation of gene lists](class13/class13.md)
 
