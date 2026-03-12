@@ -174,7 +174,7 @@ We could view these in R with **bio3dview** `view.pdbs()` function.
 
 ```{r}
 library(bio3dview)
-view.pdbs(pdbs, colorScheme = "residue")
+#view.pdbs(pdbs, colorScheme = "residue")
 ```
 
 ## PCA
@@ -193,7 +193,7 @@ plot(pc.xray, 1:2)
 We can make a visualization of the major conformational difference (i.e. large scale structure change) captured by our PCA analysis with the `mktrj()` function.
 
 ```{r}
-pc1 <- mktrj(pc.xray, file="pca.pdb")
+#pc1 <- mktrj(pc.xray, file="pca.pdb")
 ```
 
 Let's see in Mol-star
