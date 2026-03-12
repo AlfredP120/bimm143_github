@@ -7,30 +7,30 @@ My classwork for [BIMM143](https://bioboot.github.io/bimm143_W26/) at UC San Die
 
 - Class 04 [Intro to R](class04/class04.md)
 
-- Class 05 [Data viz with ggplot](class05/class05.md)
+- Class 05 [Data viz with ggplot](class05/class5.md)
 
 - Class 06 [R functions](class_06/class06.md)
 
 - Class 07 [Introduction to machine learning for Bioinformatics 1](class07/class07.md)
 
-- Class 08 [](class08/class08.md)
+- Class 08 [Unsupervised learning mini-project](class08/class08.md)
 
-- Class 09 [](class08/class09.md)
+- Class 09 [Candy mini-project](class08/class09.md)
 
-- Class 10 [](class08/class10.md)
+- Class 10 [Structural Bioinformatics (pt1)](class08/class10.md)
 
-- Class 11 [](class11/class_11.md)
+- Class 11 [Structural Bioinformatics (pt2 AlphaFold)](class11/class_11.md)
 
-- Class 12 [](class12/class12.md)
+- Class 12 [Genome informatics and high throughput sequencing](class12/class12.md)
 
-- Class 13 [](class13/class13.md)
+- Class 13 [Transcriptomics, RNA-Seq analysis, and the interpretation of gene lists](class13/class13.md)
 
-- Class 14 [](class14/class14.md)
+- Class 14 [RNA-Seq mini project](class14/class14.md)
 
-- Class 15 [](class15/class15.md)
+- Class 15 [Hands-on with Git and GitHub](class15/class15.md)
 
-- Class 17 [](class17/class17.md)
+- Class 17 [Analyzing sequencing data in the cloud](class17/class17.md)
 
-- Class 18 [](class18/class18.md)
+- Class 18 [Investigating pertussis resurgence mini-project](class18/class18.md)
 
-- Class 19 [](class19/class19.md)
+- Class 19 [Cancer mutation analysis mini-project](class19/class19.md)
